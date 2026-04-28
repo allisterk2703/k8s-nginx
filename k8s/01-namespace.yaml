@@ -1,0 +1,6 @@
+# Creates a namespace for the deployment
+
+apiVersion: v1 # API version of the resource
+kind: Namespace # kind of the resource
+metadata:
+  name: nginx-namespace # name of the namespace

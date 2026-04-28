@@ -1,0 +1,30 @@
+# Creates a deployment for the nginx container
+
+apiVersion: apps/v1 # API version of the resource
+kind: Deployment # kind of the resource
+metadata:
+  name: nginx-deployment # name of the deployment
+  namespace: nginx-namespace # namespace of the deployment
+spec:
+  replicas: 2 # number of replicas (= number of pods) of the deployment
+  selector:
+    matchLabels:
+      app: nginx-app # label to match the pods
+  template:
+    metadata:
+      labels:
+        app: nginx-app # label to match the pods
+    spec:
+      containers:
+      - name: nginx-container # name of the container
+        image: nginx-image:latest # name of the image to use
+        imagePullPolicy: Never # do not pull the image from a remote registry
+        ports:
+        - containerPort: 80 # port to expose on the container
+        resources:
+          requests:
+            memory: "64Mi" # minimum memory required for the container
+            cpu: "100m" # minimum CPU required for the container
+          limits:
+            memory: "128Mi" # maximum memory required for the container
+            cpu: "250m" # maximum CPU required for the container

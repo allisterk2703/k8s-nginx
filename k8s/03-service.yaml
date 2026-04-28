@@ -1,0 +1,15 @@
+# Creates a service for the nginx deployment
+
+apiVersion: v1 # API version of the resource
+kind: Service # kind of the resource
+metadata:
+  name: nginx-service # name of the service
+  namespace: nginx-namespace # namespace of the service
+spec:
+  selector:
+    app: nginx-app # label to match the pods
+  ports:
+    - protocol: TCP
+      port: 80 # port to expose on the service
+      targetPort: 80 # port to forward to the pods
+  type: LoadBalancer # type of the service
